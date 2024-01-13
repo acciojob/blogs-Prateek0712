@@ -17,11 +17,17 @@ public class ImageService {
 
     public Image addImage(Integer blogId, String description, String dimensions){
         //add an image to the blog
-        Blog blog=blogRepository2.findById(blogId).get();
-        Image image=new Image();
+        Image image = new Image();
         image.setDescription(description);
         image.setDimensions(dimensions);
+
+        Blog blog = blogRepository2.findById(blogId).get();
+        image.setBlog(blog);
+
+        // add list to blog
         blog.getImageList().add(image);
+//        List<Image> imageList = blog.getImageList();
+//        imageList.add(image);
         imageRepository2.save(image);
         blogRepository2.save(blog);
         return image;
