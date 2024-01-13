@@ -7,22 +7,27 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserService {
     @Autowired
     UserRepository userRepository3;
-
     public User createUser(String username, String password){
-
-
-    }
-
-    public void deleteUser(int userId){
-
+        User user=new User(username,password);
+        userRepository3.save(user);
+        return  user;
     }
 
     public User updateUser(Integer id, String password){
-
+        Optional<User>user=userRepository3.findById(id);
+        User u=user.get();
+        u.setPassword(password);
+        userRepository3.save(u);
+        return u;
     }
+    public void deleteUser(int userId){
+        userRepository3.deleteById(userId);
+    }
+/* <-------------------------------DONE--------------------------------->*/
 }
