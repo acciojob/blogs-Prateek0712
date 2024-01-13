@@ -35,7 +35,6 @@ public class Blog {
         this.pubDate = pubDate;
         this.user = user;
     }
-
     public Integer getId() {
         return id;
     }
